@@ -6,9 +6,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 export default function TaskItem({ item, onToggle }) {
   return (
     //Recogemos el id de la tarjeta pulsada
+    //onPress llama a la función onToggle con el id de la tarea pulsada
     <TouchableOpacity onPress={() => onToggle(item.id)}>
-      //Si el item está marcado como hecho, aplicamos estilos diferentes, sino,
-      solo los estilos base
+      {/* Si el item está marcado como hecho, aplicamos estilos diferentes tanto
+      a su contenedor, como al texto, sino, solo los estilos base */}
       <View style={[styles.item, item.done && styles.itemDone]}>
         <Text style={[styles.text, item.done && styles.textDone]}>
           {item.text}
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     elevation: 1,
 
-    //El elevation de iOS se consigue con las siguientes propiedades
+    //El elevation de iOS se consigue con las siguientes propiedades (sombra ligera)
     shadowColor: "#000",
     shadowOpacity: 0.2,
     shadowRadius: 2,

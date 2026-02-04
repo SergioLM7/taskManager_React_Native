@@ -2,11 +2,18 @@ import React from "react";
 
 import { View, Text, Image, StyleSheet } from "react-native";
 
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+
 //Export permite que otros archivos importen este componente
 //default indica que es un componente principal
 export default function Header() {
+
+  //useSafeAreaInsets (junto a SafeAreaView) devuelve los insets (márgenes seguros) del dispositivo actual
+  //evita que el contenido se solape con elementos del sistema como la Dynamic Island, barra de estado, etc.
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
       <Image
         source={require("../assets/logo.png")}
         style={styles.logo}
@@ -25,11 +32,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         //Las unidades están en pixeles
         paddingVertical: 24,
-        gap: 4
+        gap: 4,
     }, 
     logo: {
-        width: 80,
-        height: 80,
+        width: 40,
+        height: 40,
         marginBottom: 8
     },
     title: {
@@ -38,6 +45,6 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 14,
-        color: '#d11919'
+        color: '#0f4bc2'
     }
 });
