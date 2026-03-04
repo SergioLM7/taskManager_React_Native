@@ -55,12 +55,27 @@ export default function HomeScreen( {navigation} ) {
     );
   };
 
+  const doneCounter = tasks.filter((task) => task.done).length;
+
   return (
     <SafeAreaProvider>
       <View style={styles.safe}>
         <StatusBar barStyle="dark-content" />
         <View style={styles.container}>
           <Header />
+
+          { /*Bloque de botones*/ }
+          <View style={styles.topButtons}>
+            <Button
+              title={`Ver tareas completadas (${doneCounter})`}
+              onPress={() => {
+                navigation.navigate("DoneTasks", {tasks, onToggle: handleToggleTask});
+              }}
+            />
+
+
+          </View>
+
           <View style={styles.inputContainer}>
             <TextInput
               style={styles.input}
@@ -85,7 +100,7 @@ export default function HomeScreen( {navigation} ) {
             //renderItem recibe un objeto (elemento item de tasks) que representa cada tarea,
             // y devuelve un componente TaskItem con la tarea y la función de toggle
             renderItem={({ item }) => (
-              <TaskItem item={item} onToggle={handleToggleTask} />
+              <TaskItem task={item} onToggle={handleToggleTask} />
             )}
             //En caso de que la lista esté vacía, muestra un mensaje
             ListEmptyComponent={
@@ -143,4 +158,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#777",
   },
+  //Estilo de los botones
+  topButtons: {
+    marginBottom: 8,
+    gap: 12
+  }
 });

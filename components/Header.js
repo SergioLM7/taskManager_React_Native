@@ -19,6 +19,7 @@ export default function Header() {
         style={styles.logo}
         //permite que se readapte la imagen al contenedor
         resizeMode="contain"
+        borderRadius={20}
       ></Image>
       <Text style={styles.title}>Task Manager</Text>
       <Text style={styles.subtitle}>A simple task list app</Text>
@@ -35,9 +36,10 @@ const styles = StyleSheet.create({
         gap: 4,
     }, 
     logo: {
-        width: 40,
-        height: 40,
-        marginBottom: 8
+        width: 45,
+        height: 45,
+        marginBottom: 8,
+        marginTop: 8
     },
     title: {
         fontSize: 20,

@@ -3,16 +3,16 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 //A cada TaskItem se le asignará una tarea específica, un objeto con (id, texto, boolean) y una función onToggle para cambiar su estado
-export default function TaskItem({ item, onToggle }) {
+export default function TaskItem({ task, onToggle }) {
   return (
     //Recogemos el id de la tarjeta pulsada
     //onPress llama a la función onToggle con el id de la tarea pulsada
-    <TouchableOpacity onPress={() => onToggle(item.id)}>
+    <TouchableOpacity onPress={() => onToggle(task.id)}>
       {/* Si el item está marcado como hecho, aplicamos estilos diferentes tanto
       a su contenedor, como al texto, sino, solo los estilos base */}
-      <View style={[styles.item, item.done && styles.itemDone]}>
-        <Text style={[styles.text, item.done && styles.textDone]}>
-          {item.text}
+      <View style={[styles.item, task.done && styles.itemDone]}>
+        <Text style={[styles.text, task.done && styles.textDone]}>
+          {task.text}
         </Text>
       </View>
     </TouchableOpacity>
