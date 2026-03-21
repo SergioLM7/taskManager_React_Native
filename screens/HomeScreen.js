@@ -2,7 +2,7 @@
 // - Guarda estado: texto del input (taskText) y lista de tareas (tasks)
 // - Permite: añadir tareas y marcar/desmarcar como completadas
 // - Renderiza: contador + lista optimizada (FlatList)
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 import {
   StyleSheet, // Para definir estilos (similar a CSS pero en JS)
@@ -55,7 +55,7 @@ export default function HomeScreen( {navigation} ) {
     );
   };
 
-  const doneCounter = tasks.filter((task) => task.done).length;
+  const doneCounter = useMemo(() => tasks.filter((task) => task.done).length, [tasks]);
 
   return (
     <SafeAreaProvider>
@@ -72,8 +72,10 @@ export default function HomeScreen( {navigation} ) {
                 navigation.navigate("DoneTasks", {tasks, onToggle: handleToggleTask});
               }}
             />
-
-
+            <Button 
+              title={`Ver mapa`}
+              onPress={() => navigation.navigate("Map")}
+            />
           </View>
 
           <View style={styles.inputContainer}>
