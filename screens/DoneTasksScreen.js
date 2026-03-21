@@ -6,7 +6,6 @@ export default function DoneTasksScreen({route }) {
 
     const {tasks, onToggle} = route.params;
     const doneTasks = tasks.filter(task => task.done);
-    const doneCounter = tasks.filter(task => task.done).length;
 
     return (
         <View style={styles.container}>
